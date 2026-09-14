@@ -5,7 +5,7 @@ export const siteConfig = {
   creatorName: 'Arianna Grangetto',
   title: 'JavaScript Developer',
   ticker: {
-    text: '¡BugBlog y Naao están online! ClipSync en desarrollo · Próximamente',
+    text: '¡BugBlog, Naao y ClipSync están online! Creaciones listas para explorar',
     linkText: 'Ver creaciones',
     url: '#products'
   },
@@ -133,19 +133,21 @@ export const appShowcase: AppShowcase = {
 export const clipSyncShowcase: UpcomingProductShowcase = {
   id: 'clipsync',
   name: 'ClipSync',
-  statusBadge: 'COMING SOON · V0.9_ALPHA',
-  tagline: 'Cross-device clipboard synchronization & history manager in real time.',
-  description: 'Un gestor de portapapeles de última generación que sincroniza texto, código, credenciales y paletas de color en tiempo real entre tu computadora y tu móvil con cifrado de extremo a extremo (E2EE).',
+  statusBadge: 'WEB APP & EXTENSIÓN CHROME MV3 · V1.0.4',
+  tagline: 'Block de notas inteligente y sincronizado en tiempo real con extensión para navegador.',
+  description: 'Block de notas inteligente disponible como aplicación web y extensión Google Chrome Manifest V3. Captura texto de cualquier página, sincroniza al instante con Supabase Realtime y organiza todo con categorías dinámicas y colores.',
   bullets: [
-    'Sincronización P2P en tiempo real en menos de 50ms entre Desktop y Móvil',
-    'Cifrado de extremo a extremo (E2EE) con claves criptográficas locales',
-    'Detección inteligente de formatos: JSON, snippets de código, colores HEX y URLs',
-    'Historial con búsqueda instantánea y accesos rápidos desde la bandeja del sistema'
+    'Sincronización en tiempo real con PostgreSQL mediante Supabase Realtime',
+    'Extensión Chrome Manifest V3: captura texto de cualquier sitio web al instante',
+    'Organización flexible con categorías dinámicas, paleta de colores y notas favoritas',
+    'Autenticación segura con Google OAuth / Email, y 100% test coverage (Vitest y Playwright)'
   ],
-  progressPercent: 82,
-  devices: ['macOS', 'Windows', 'iOS', 'Android'],
-  githubUrl: 'https://github.com/ariigrangetto',
-  previewUrl: '#clipsync'
+  progressPercent: 100,
+  devices: ['Google Chrome MV3', 'Web Application', 'Mobile Friendly', 'Desktop'],
+  githubUrl: 'https://github.com/ariigrangetto/clipSync',
+  previewUrl: 'https://clipsyncc.vercel.app',
+  videoUrl: '/clipsync-showcase.mp4',
+  extensionUrl: 'https://github.com/ariigrangetto/clipSync/releases'
 };
 
 export const petToolShowcase = clipSyncShowcase;

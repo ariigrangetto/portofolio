@@ -47,7 +47,7 @@ export const Footer = ({ lang }: FooterProps) => {
                 className="block text-[13px] text-[#9d9ab3] hover:text-white transition-colors"
                 href="#clipsync"
               >
-                ClipSync <span className="text-[10px] font-mono text-[#8B7FD4] ml-1">{lang === 'ES' ? '(Próx.)' : '(Soon)'}</span>
+                ClipSync <span className="text-[10px] font-mono text-[#3fb950] ml-1">Web & Ext</span>
               </a>
             </div>
           </div>
@@ -63,12 +63,6 @@ export const Footer = ({ lang }: FooterProps) => {
                 className="block text-[13px] text-[#9d9ab3] hover:text-white transition-colors"
               >
                 Ecosystem
-              </a>
-              <a
-                href="#desk"
-                className="block text-[13px] text-[#9d9ab3] hover:text-white transition-colors"
-              >
-                {lang === 'ES' ? 'Mi Setup' : 'My Desk'}
               </a>
             </div>
           </div>

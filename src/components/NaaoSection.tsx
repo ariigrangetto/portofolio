@@ -12,11 +12,24 @@ export const NaaoSection = ({ lang, onExploreNaao }: NaaoSectionProps) => {
   const [selectedSlot, setSelectedSlot] = useState('16:30');
 
   const slots = [
-    { time: '14:00', status: 'busy', label: 'Ocupado' },
-    { time: '15:15', status: 'busy', label: 'Ocupado' },
-    { time: '16:30', status: 'ai', label: '✨ Sugerido IA' },
-    { time: '18:00', status: 'available', label: 'Disponible' },
+    { time: '14:00', status: 'busy', label: lang === 'ES' ? 'Ocupado' : 'Booked' },
+    { time: '15:15', status: 'busy', label: lang === 'ES' ? 'Ocupado' : 'Booked' },
+    { time: '16:30', status: 'ai', label: lang === 'ES' ? '✨ Sugerido IA' : '✨ AI Suggested' },
+    { time: '18:00', status: 'available', label: lang === 'ES' ? 'Disponible' : 'Available' },
   ];
+
+  const bullets =
+    lang === 'ES'
+      ? [
+          'Sugerencias inteligentes con Google Gemini AI para optimizar huecos de agenda',
+          'CRM integrado: historial de servicios, notas y métricas de días desde última visita',
+          'Seguridad robusta con Supabase Auth, Row Level Security (RLS) y CI/CD con Vitest',
+        ]
+      : [
+          'Smart suggestions powered by Google Gemini AI to optimize scheduling gaps',
+          'Integrated CRM: service history, client notes, and days-since-last-visit metrics',
+          'Robust security with Supabase Auth, Row Level Security (RLS), and CI/CD with Vitest',
+        ];
 
   return (
     <section id="setuply" className="border-t border-[#232130] px-5 md:px-12 py-14 md:py-18">
@@ -30,7 +43,7 @@ export const NaaoSection = ({ lang, onExploreNaao }: NaaoSectionProps) => {
                 <Calendar className="w-6 h-6" />
               </div>
               <span className="font-mono text-[10px] tracking-[0.12em] uppercase text-[#8B7FD4] font-semibold bg-[#8B7FD4]/10 px-2.5 py-1 rounded-md border border-[#8B7FD4]/20">
-                {appShowcase.rating} · {appShowcase.badge}
+                {appShowcase.rating} · {lang === 'ES' ? appShowcase.badge : 'Web App · Mobile Ready · Gemini AI'}
               </span>
             </div>
 
@@ -41,12 +54,12 @@ export const NaaoSection = ({ lang, onExploreNaao }: NaaoSectionProps) => {
             <p className="text-sm text-[#9d9ab3] leading-relaxed mb-6 max-w-[46ch]">
               {lang === 'ES'
                 ? 'Sistema inteligente de agendamiento de turnos y CRM para salones de belleza y negocios de servicios. Analiza disponibilidad en tiempo real con Google Gemini AI para recomendar el horario ideal.'
-                : appShowcase.description}
+                : 'Smart appointment scheduling system and CRM for beauty salons and service businesses. Analyzes availability in real time with Google Gemini AI to recommend optimal time slots.'}
             </p>
 
             {/* Bullets */}
             <div className="space-y-2.5 mb-7">
-              {appShowcase.bullets.map((bullet, idx) => (
+              {bullets.map((bullet, idx) => (
                 <div key={idx} className="flex items-start gap-2.5 text-[13px] text-[#9d9ab3]">
                   <ChevronRight className="w-4 h-4 text-[#8B7FD4] shrink-0 mt-0.5" />
                   <span>{bullet}</span>
@@ -103,7 +116,7 @@ export const NaaoSection = ({ lang, onExploreNaao }: NaaoSectionProps) => {
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px] text-[#3fb950] font-mono">
                   <span className="w-2 h-2 rounded-full bg-[#3fb950] animate-pulse" />
-                  <span>Agenda activa</span>
+                  <span>{lang === 'ES' ? 'Agenda activa' : 'Live Schedule'}</span>
                 </div>
               </div>
 
@@ -111,9 +124,19 @@ export const NaaoSection = ({ lang, onExploreNaao }: NaaoSectionProps) => {
               <div className="bg-[#8B7FD4]/15 border border-[#8B7FD4]/30 rounded-xl p-3.5 mb-4 relative z-10 flex items-start gap-2.5">
                 <Bot className="w-4 h-4 text-[#8B7FD4] shrink-0 mt-0.5" />
                 <div className="text-xs">
-                  <span className="text-[#8B7FD4] font-semibold block mb-0.5">Sugerencia Gemini AI:</span>
+                  <span className="text-[#8B7FD4] font-semibold block mb-0.5">
+                    {lang === 'ES' ? 'Sugerencia Gemini AI:' : 'Gemini AI Suggestion:'}
+                  </span>
                   <span className="text-white/80 leading-relaxed">
-                    Hueco óptimo detectado para <strong className="text-white">Corte & Styling</strong> hoy a las 16:30 hs.
+                    {lang === 'ES' ? (
+                      <>
+                        Hueco óptimo detectado para <strong className="text-white">Corte & Styling</strong> hoy a las 16:30 hs.
+                      </>
+                    ) : (
+                      <>
+                        Optimal slot detected for <strong className="text-white">Cut & Styling</strong> today at 4:30 PM.
+                      </>
+                    )}
                   </span>
                 </div>
               </div>
@@ -127,12 +150,14 @@ export const NaaoSection = ({ lang, onExploreNaao }: NaaoSectionProps) => {
                     </div>
                     <div>
                       <h4 className="text-sm font-semibold text-white">Valentina Morales</h4>
-                      <span className="text-[11px] text-white/50 block">Balayage & Nutrición</span>
+                      <span className="text-[11px] text-white/50 block">
+                        {lang === 'ES' ? 'Balayage & Nutrición' : 'Balayage & Hair Care'}
+                      </span>
                     </div>
                   </div>
                   <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-medium bg-[#3fb950]/15 text-[#3fb950] border border-[#3fb950]/30">
                     <CheckCircle2 className="w-3 h-3" />
-                    Confirmado
+                    {lang === 'ES' ? 'Confirmado' : 'Confirmed'}
                   </span>
                 </div>
 
@@ -140,10 +165,10 @@ export const NaaoSection = ({ lang, onExploreNaao }: NaaoSectionProps) => {
                 <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] text-white/60">
                   <span className="flex items-center gap-1">
                     <Clock className="w-3 h-3 text-[#8B7FD4]" />
-                    <span>16:30 hs (1h 30m)</span>
+                    <span>{lang === 'ES' ? '16:30 hs (1h 30m)' : '4:30 PM (1h 30m)'}</span>
                   </span>
                   <span className="text-amber-300/80 font-mono text-[10px]">
-                    Última visita: hace 21 días
+                    {lang === 'ES' ? 'Última visita: hace 21 días' : 'Last visit: 21 days ago'}
                   </span>
                 </div>
               </div>
@@ -151,7 +176,7 @@ export const NaaoSection = ({ lang, onExploreNaao }: NaaoSectionProps) => {
               {/* Interactive Time Slot Selector */}
               <div className="relative z-10">
                 <span className="text-[11px] font-mono text-white/50 uppercase tracking-wider block mb-2">
-                  Seleccionar Horario Disponible:
+                  {lang === 'ES' ? 'Seleccionar Horario Disponible:' : 'Select Available Time:'}
                 </span>
                 <div className="grid grid-cols-2 gap-2">
                   {slots.map((slot) => {
@@ -164,17 +189,21 @@ export const NaaoSection = ({ lang, onExploreNaao }: NaaoSectionProps) => {
                         key={slot.time}
                         onClick={() => !isBusy && setSelectedSlot(slot.time)}
                         disabled={isBusy}
-                        className={`p-2 rounded-lg border text-left text-xs transition-all cursor-pointer ${isBusy
+                        className={`p-2 rounded-lg border text-left text-xs transition-all cursor-pointer ${
+                          isBusy
                             ? 'opacity-40 border-white/5 bg-white/[0.02] cursor-not-allowed'
                             : isSelected || isAi
                               ? 'border-[#8B7FD4] bg-[#8B7FD4]/20 text-white shadow-sm'
                               : 'border-white/10 bg-white/5 text-white/70 hover:border-white/20'
-                          }`}
+                        }`}
                       >
-                        <span className="font-bold block">{slot.time} hs</span>
+                        <span className="font-bold block">
+                          {slot.time} {lang === 'ES' ? 'hs' : ''}
+                        </span>
                         <span
-                          className={`text-[10px] block ${isAi ? 'text-[#8B7FD4] font-semibold' : 'text-white/40'
-                            }`}
+                          className={`text-[10px] block ${
+                            isAi ? 'text-[#8B7FD4] font-semibold' : 'text-white/40'
+                          }`}
                         >
                           {slot.label}
                         </span>

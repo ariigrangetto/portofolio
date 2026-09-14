@@ -10,10 +10,11 @@ import { ReachMeSection } from './components/ReachMeSection';
 import { Footer } from './components/Footer';
 import { BugBlogPage } from './pages/BugBlogPage';
 import { NaaoPage } from './pages/NaaoPage';
+import { ClipSyncPage } from './pages/ClipSyncPage';
 
 export function App() {
   const [lang, setLang] = useState<'ES' | 'EN'>('ES');
-  const [currentView, setCurrentView] = useState<'home' | 'bugblog' | 'naao'>(() => {
+  const [currentView, setCurrentView] = useState<'home' | 'bugblog' | 'naao' | 'clipsync'>(() => {
     if (typeof window !== 'undefined') {
       const path = window.location.pathname.toLowerCase();
       const hash = window.location.hash.toLowerCase();
@@ -22,6 +23,9 @@ export function App() {
       }
       if (path.includes('naao') || hash.includes('naao')) {
         return 'naao';
+      }
+      if (path.includes('clipsync') || hash === '#/clipsync') {
+        return 'clipsync';
       }
     }
     return 'home';
@@ -36,6 +40,9 @@ export function App() {
         window.scrollTo({ top: 0, behavior: 'instant' });
       } else if (path.includes('naao') || hash.includes('naao')) {
         setCurrentView('naao');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      } else if (path.includes('clipsync') || hash === '#/clipsync') {
+        setCurrentView('clipsync');
         window.scrollTo({ top: 0, behavior: 'instant' });
       } else {
         setCurrentView('home');
@@ -60,6 +67,12 @@ export function App() {
   const navigateToNaao = () => {
     setCurrentView('naao');
     window.history.pushState({}, '', '#/naao');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navigateToClipSync = () => {
+    setCurrentView('clipsync');
+    window.history.pushState({}, '', '#/clipsync');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -89,6 +102,16 @@ export function App() {
     );
   }
 
+  if (currentView === 'clipsync') {
+    return (
+      <ClipSyncPage
+        lang={lang}
+        onToggleLang={setLang}
+        onBack={navigateToHome}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#0C0B12] text-[#f0efff] selection:bg-[#8B7FD4]/30 selection:text-white flex flex-col font-sans">
       <TickerBar />
@@ -98,7 +121,7 @@ export function App() {
         <Hero lang={lang} />
         <BugBlogSection lang={lang} onExploreBugBlog={navigateToBugBlog} />
         <NaaoSection lang={lang} onExploreNaao={navigateToNaao} />
-        <ClipSyncSection lang={lang} />
+        <ClipSyncSection lang={lang} onExploreClipSync={navigateToClipSync} />
         {/* <NewsletterSection lang={lang} /> */}
         <EcosystemSection lang={lang} />
         <ReachMeSection lang={lang} />

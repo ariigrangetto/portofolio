@@ -40,17 +40,11 @@ export interface UpcomingProductShowcase {
   previewUrl?: string;
   progressPercent: number;
   devices: string[];
+  videoUrl?: string;
+  extensionUrl?: string;
 }
 
 export type PetToolShowcase = UpcomingProductShowcase;
-
-export interface DeskItem {
-  id: string;
-  category: string;
-  name: string;
-  description: string;
-  link?: string;
-}
 
 export interface SocialCard {
   id: string;

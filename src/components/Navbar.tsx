@@ -13,7 +13,6 @@ export const Navbar = ({ lang, onToggleLang }: NavbarProps) => {
   const navLinks = [
     { name: lang === 'ES' ? 'Productos Digitales' : 'Digital Goods', href: '#products', highlight: true },
     { name: 'Studio', href: '#ecosystem' },
-    { name: lang === 'ES' ? 'Mi Setup' : 'My Desk', href: '#desk' },
     { name: lang === 'ES' ? 'Contacto' : 'Contact', href: '#contact' },
   ];
 
